@@ -1,0 +1,351 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1720" viewBox="0 0 1800 1720" role="img" aria-labelledby="title desc"><title id="title">Proposed temperature-control conceptual circuit</title><desc id="desc">Conceptual circuit, not a fabrication release. Three 10 kilohm beta3977 NTC sensors are buffered with MCP6002 and filtered before ADC sampling. A PIC18F57Q43 asserts a shared active-low fault through a P2N2222A open collector. A fused external9 volt input supplies a7805 and optional locally powered fan. Physical pin mapping and component ratings require review.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9" fill="#2b756d"/></marker></defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#162a30}.mono{font-family:Menlo,Consolas,monospace}.muted{fill:#667776}.teal{fill:#2b756d}.coral{fill:#c65b3b}.wire{stroke:#2b756d;stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}.thin{stroke:#2b756d;stroke-width:2;fill:none}.power{stroke:#c65b3b;stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}</style>
+<rect width="1800" height="1720" fill="#f5f3eb"/>
+<text x="50" y="55" font-size="15" class="mono teal" font-weight="bold">TEMPERATURE CONTROL / CONCEPTUAL CIRCUIT</text>
+<text x="50" y="106" font-size="43" class="" font-weight="bold">Three probes. One local supervisor.</text>
+<text x="50" y="139" font-size="19" class="muted">Proposed design · not a fabrication release · named signals are net labels; physical MCU pins remain TBD.</text>
+<rect x="50" y="175" width="1700" height="230" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="75" y="210" font-size="16" class="mono teal" font-weight="bold">A / LOCAL POWER + DECOUPLING</text>
+<text x="90" y="255" font-size="18" class="mono" font-weight="bold">J1</text>
+<text x="90" y="282" font-size="17" class="mono">EXTERNAL 9 V</text>
+<circle cx="245" cy="270" r="4" fill="#2b756d"/>
+<polyline points="245,270 300,270" class="power"/>
+<rect x="300" y="258.0" width="60" height="24" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="330" y="250" font-size="16" class="mono" text-anchor="middle">F1</text>
+<text x="330" y="309" font-size="14" class="mono muted" text-anchor="middle">TBD</text>
+<polyline points="360,270 375,270" class="power"/><path d="M375 258L375 282L397 270Z" fill="#fffefa" stroke="#c65b3b" stroke-width="2.5"/><path d="M400 255V285" class="power"/><polyline points="400,270 600,270" class="power"/><text x="385" y="243" font-size="14" class="mono coral" text-anchor="middle">D4</text>
+<circle cx="435" cy="270" r="4" fill="#c65b3b"/>
+<rect x="600" y="241" width="180" height="63" rx="5" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="690" y="266" font-size="21" class="mono" font-weight="bold" text-anchor="middle">U4 · 7805</text>
+<text x="615" y="291" font-size="13" class="mono">IN</text>
+<text x="725" y="291" font-size="13" class="mono">OUT</text>
+<polyline points="780,270 1035,270" class="power"/>
+<text x="480" y="254" font-size="15" class="mono coral">VIN_9V</text>
+<text x="1055" y="278" font-size="20" class="mono coral" font-weight="bold">+5V_LOCAL</text>
+<polyline points="690,304 690,365" class="wire"/>
+<polyline points="690,365 690,375" class="wire"/>
+<polyline points="676,375 704,375" class="wire"/>
+<polyline points="681,382 699,382" class="wire"/>
+<polyline points="686,389 694,389" class="wire"/>
+<polyline points="435,270 435,308" class="wire"/>
+<polyline points="435,308 435,330" class="wire"/>
+<polyline points="420,330 450,330" class="wire"/>
+<polyline points="420,342 450,342" class="wire"/>
+<polyline points="435,342 435,366" class="wire"/>
+<text x="456" y="340" font-size="14" class="mono">330 nF</text>
+<polyline points="435,366 435,365" class="wire"/>
+<polyline points="435,365 435,375" class="wire"/>
+<polyline points="421,375 449,375" class="wire"/>
+<polyline points="426,382 444,382" class="wire"/>
+<polyline points="431,389 439,389" class="wire"/>
+<polyline points="895,270 895,308" class="wire"/>
+<polyline points="895,308 895,330" class="wire"/>
+<polyline points="880,330 910,330" class="wire"/>
+<polyline points="880,342 910,342" class="wire"/>
+<polyline points="895,342 895,366" class="wire"/>
+<text x="916" y="340" font-size="14" class="mono">100 nF</text>
+<polyline points="895,365 895,375" class="wire"/>
+<polyline points="881,375 909,375" class="wire"/>
+<polyline points="886,382 904,382" class="wire"/>
+<polyline points="891,389 899,389" class="wire"/>
+<circle cx="895" cy="270" r="4" fill="#c65b3b"/>
+<polyline points="245,347 350,347" class="wire"/>
+<polyline points="350,347 350,357" class="wire"/>
+<polyline points="336,357 364,357" class="wire"/>
+<polyline points="341,364 359,364" class="wire"/>
+<polyline points="346,371 354,371" class="wire"/>
+<text x="90" y="354" font-size="15" class="mono">J1 RETURN</text>
+<polyline points="1005,270 1005,300" class="wire"/><rect x="996" y="300" width="18" height="45" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/><polyline points="1005,345 1005,365" class="wire"/><path d="M991 365H1019M996 372H1014M1001 379H1009" class="thin"/><text x="1025" y="320" font-size="14" class="mono">R10 1 kΩ</text><text x="1025" y="343" font-size="13" class="muted">5 mA load</text><text x="1225" y="251" font-size="18" class="mono" font-weight="bold">U2 + U3 · MCP6002</text>
+<text x="1225" y="282" font-size="17" class="mono">VDD → +5V_LOCAL / VSS → GND</text>
+<text x="1225" y="315" font-size="17" class="muted">100 nF at each IC; 10 µF input + output bulk.</text>
+<text x="1225" y="347" font-size="17" class="muted">Nano + IC decoupling, LEDs and extra testpoints off-sheet.</text>
+<text x="1225" y="380" font-size="17" class="coral">Check 7805 temperature rise at final load.</text>
+<text x="90" y="390" font-size="14" class="mono coral">VIN_9V → optional local fan branch</text>
+<rect x="50" y="435" width="1700" height="570" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="75" y="472" font-size="16" class="mono teal" font-weight="bold">B / THREE IDENTICAL ANALOG CHANNELS</text>
+<text x="1723" y="472" font-size="16" class="mono muted" text-anchor="end">10 kΩ @ 25°C · B25/85 ≈ 3977 K</text>
+<text x="85" y="525" font-size="20" class="" font-weight="bold">PITCH MOTOR DRIVER</text>
+<text x="85" y="553" font-size="14" class="mono muted">Probe connector J3 · divider return → GND</text>
+<text x="160" y="595" font-size="15" class="mono coral" text-anchor="middle">+5V_LOCAL</text>
+<polyline points="160,605 160,625" class="power"/>
+<rect x="150.0" y="625" width="20" height="60" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="180" y="645" font-size="16" class="mono" font-weight="bold">R1</text>
+<text x="180" y="672" font-size="16" class="mono">10 kΩ</text>
+<polyline points="160,685 160,735" class="wire"/>
+<circle cx="160" cy="735" r="4" fill="#2b756d"/>
+<text x="145" y="718" font-size="14" class="mono teal" text-anchor="end">TP1</text>
+<polyline points="160,735 160,790" class="wire"/>
+<rect x="149.0" y="790" width="22" height="62" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<polyline points="142,845 178,797" class="thin"/>
+<text x="187" y="808" font-size="16" class="mono" font-weight="bold">TH1</text>
+<text x="187" y="831" font-size="15" class="mono">10 kΩ NTC</text>
+<polyline points="160,852 160,880" class="wire"/>
+<polyline points="160,880 160,890" class="wire"/>
+<polyline points="146,890 174,890" class="wire"/>
+<polyline points="151,897 169,897" class="wire"/>
+<polyline points="156,904 164,904" class="wire"/>
+<path d="M 300 675 L 300 795 L 380 735 Z" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="310" y="720" font-size="17" class="mono">−</text>
+<text x="310" y="766" font-size="17" class="mono">+</text>
+<text x="329" y="741" font-size="15" class="mono" font-weight="bold">U2A</text>
+<polyline points="160,735 275,735 275,760 300,760" class="wire"/>
+<polyline points="380,735 392,735 392,645 280,645 280,710 300,710" class="wire"/>
+<text x="335" y="661" font-size="14" class="mono coral" text-anchor="middle">+5 V</text>
+<polyline points="335,670 335,701" class="power"/>
+<polyline points="335,769 335,812" class="wire"/>
+<polyline points="335,812 335,822" class="wire"/>
+<polyline points="321,822 349,822" class="wire"/>
+<polyline points="326,829 344,829" class="wire"/>
+<polyline points="331,836 339,836" class="wire"/>
+<polyline points="392,735 420,735" class="wire"/>
+<rect x="420" y="725.0" width="58" height="20" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="449" y="710" font-size="14" class="mono" text-anchor="middle">R4 · 1 kΩ</text>
+<polyline points="478,735 555,735" class="wire"/>
+<circle cx="503" cy="735" r="4" fill="#2b756d"/>
+<polyline points="503,735 503,757" class="wire"/>
+<polyline points="488,757 518,757" class="wire"/>
+<polyline points="488,769 518,769" class="wire"/>
+<polyline points="503,769 503,793" class="wire"/>
+<text x="524" y="767" font-size="14" class="mono">100 nF</text>
+<polyline points="503,793 503,840" class="wire"/>
+<polyline points="503,840 503,850" class="wire"/>
+<polyline points="489,850 517,850" class="wire"/>
+<polyline points="494,857 512,857" class="wire"/>
+<polyline points="499,864 507,864" class="wire"/>
+
+<text x="555" y="725" font-size="14" class="mono teal" text-anchor="middle">CH0</text>
+
+<text x="85" y="950" font-size="15" class="mono" font-weight="bold">NTC_PITCH → ADC_TEMP_PITCH</text>
+<polyline points="616,502 616,974" class="thin"/>
+<text x="650" y="525" font-size="20" class="" font-weight="bold">ROLL MOTOR DRIVER</text>
+<text x="650" y="553" font-size="14" class="mono muted">Probe connector J4 · divider return → GND</text>
+<text x="725" y="595" font-size="15" class="mono coral" text-anchor="middle">+5V_LOCAL</text>
+<polyline points="725,605 725,625" class="power"/>
+<rect x="715.0" y="625" width="20" height="60" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="745" y="645" font-size="16" class="mono" font-weight="bold">R2</text>
+<text x="745" y="672" font-size="16" class="mono">10 kΩ</text>
+<polyline points="725,685 725,735" class="wire"/>
+<circle cx="725" cy="735" r="4" fill="#2b756d"/>
+<text x="710" y="718" font-size="14" class="mono teal" text-anchor="end">TP2</text>
+<polyline points="725,735 725,790" class="wire"/>
+<rect x="714.0" y="790" width="22" height="62" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<polyline points="707,845 743,797" class="thin"/>
+<text x="752" y="808" font-size="16" class="mono" font-weight="bold">TH2</text>
+<text x="752" y="831" font-size="15" class="mono">10 kΩ NTC</text>
+<polyline points="725,852 725,880" class="wire"/>
+<polyline points="725,880 725,890" class="wire"/>
+<polyline points="711,890 739,890" class="wire"/>
+<polyline points="716,897 734,897" class="wire"/>
+<polyline points="721,904 729,904" class="wire"/>
+<path d="M 865 675 L 865 795 L 945 735 Z" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="875" y="720" font-size="17" class="mono">−</text>
+<text x="875" y="766" font-size="17" class="mono">+</text>
+<text x="894" y="741" font-size="15" class="mono" font-weight="bold">U2B</text>
+<polyline points="725,735 840,735 840,760 865,760" class="wire"/>
+<polyline points="945,735 957,735 957,645 845,645 845,710 865,710" class="wire"/>
+<text x="900" y="661" font-size="14" class="mono coral" text-anchor="middle">+5 V</text>
+<polyline points="900,670 900,701" class="power"/>
+<polyline points="900,769 900,812" class="wire"/>
+<polyline points="900,812 900,822" class="wire"/>
+<polyline points="886,822 914,822" class="wire"/>
+<polyline points="891,829 909,829" class="wire"/>
+<polyline points="896,836 904,836" class="wire"/>
+<polyline points="957,735 985,735" class="wire"/>
+<rect x="985" y="725.0" width="58" height="20" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1014" y="710" font-size="14" class="mono" text-anchor="middle">R5 · 1 kΩ</text>
+<polyline points="1043,735 1120,735" class="wire"/>
+<circle cx="1068" cy="735" r="4" fill="#2b756d"/>
+<polyline points="1068,735 1068,757" class="wire"/>
+<polyline points="1053,757 1083,757" class="wire"/>
+<polyline points="1053,769 1083,769" class="wire"/>
+<polyline points="1068,769 1068,793" class="wire"/>
+<text x="1089" y="767" font-size="14" class="mono">100 nF</text>
+<polyline points="1068,793 1068,840" class="wire"/>
+<polyline points="1068,840 1068,850" class="wire"/>
+<polyline points="1054,850 1082,850" class="wire"/>
+<polyline points="1059,857 1077,857" class="wire"/>
+<polyline points="1064,864 1072,864" class="wire"/>
+
+<text x="1120" y="725" font-size="14" class="mono teal" text-anchor="middle">CH1</text>
+
+<text x="650" y="950" font-size="15" class="mono" font-weight="bold">NTC_ROLL → ADC_TEMP_ROLL</text>
+<polyline points="1181,502 1181,974" class="thin"/>
+<text x="1215" y="525" font-size="20" class="" font-weight="bold">LOCAL 5 V REGULATOR</text>
+<text x="1215" y="553" font-size="14" class="mono muted">Probe connector J5 · divider return → GND</text>
+<text x="1290" y="595" font-size="15" class="mono coral" text-anchor="middle">+5V_LOCAL</text>
+<polyline points="1290,605 1290,625" class="power"/>
+<rect x="1280.0" y="625" width="20" height="60" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1310" y="645" font-size="16" class="mono" font-weight="bold">R3</text>
+<text x="1310" y="672" font-size="16" class="mono">10 kΩ</text>
+<polyline points="1290,685 1290,735" class="wire"/>
+<circle cx="1290" cy="735" r="4" fill="#2b756d"/>
+<text x="1275" y="718" font-size="14" class="mono teal" text-anchor="end">TP3</text>
+<polyline points="1290,735 1290,790" class="wire"/>
+<rect x="1279.0" y="790" width="22" height="62" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<polyline points="1272,845 1308,797" class="thin"/>
+<text x="1317" y="808" font-size="16" class="mono" font-weight="bold">TH3</text>
+<text x="1317" y="831" font-size="15" class="mono">10 kΩ NTC</text>
+<polyline points="1290,852 1290,880" class="wire"/>
+<polyline points="1290,880 1290,890" class="wire"/>
+<polyline points="1276,890 1304,890" class="wire"/>
+<polyline points="1281,897 1299,897" class="wire"/>
+<polyline points="1286,904 1294,904" class="wire"/>
+<path d="M 1430 675 L 1430 795 L 1510 735 Z" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1440" y="720" font-size="17" class="mono">−</text>
+<text x="1440" y="766" font-size="17" class="mono">+</text>
+<text x="1459" y="741" font-size="15" class="mono" font-weight="bold">U3A</text>
+<polyline points="1290,735 1405,735 1405,760 1430,760" class="wire"/>
+<polyline points="1510,735 1522,735 1522,645 1410,645 1410,710 1430,710" class="wire"/>
+<text x="1465" y="661" font-size="14" class="mono coral" text-anchor="middle">+5 V</text>
+<polyline points="1465,670 1465,701" class="power"/>
+<polyline points="1465,769 1465,812" class="wire"/>
+<polyline points="1465,812 1465,822" class="wire"/>
+<polyline points="1451,822 1479,822" class="wire"/>
+<polyline points="1456,829 1474,829" class="wire"/>
+<polyline points="1461,836 1469,836" class="wire"/>
+<polyline points="1522,735 1550,735" class="wire"/>
+<rect x="1550" y="725.0" width="58" height="20" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1579" y="710" font-size="14" class="mono" text-anchor="middle">R6 · 1 kΩ</text>
+<polyline points="1608,735 1685,735" class="wire"/>
+<circle cx="1633" cy="735" r="4" fill="#2b756d"/>
+<polyline points="1633,735 1633,757" class="wire"/>
+<polyline points="1618,757 1648,757" class="wire"/>
+<polyline points="1618,769 1648,769" class="wire"/>
+<polyline points="1633,769 1633,793" class="wire"/>
+<text x="1654" y="767" font-size="14" class="mono">100 nF</text>
+<polyline points="1633,793 1633,840" class="wire"/>
+<polyline points="1633,840 1633,850" class="wire"/>
+<polyline points="1619,850 1647,850" class="wire"/>
+<polyline points="1624,857 1642,857" class="wire"/>
+<polyline points="1629,864 1637,864" class="wire"/>
+
+<text x="1685" y="725" font-size="14" class="mono teal" text-anchor="middle">CH2</text>
+
+<text x="1215" y="950" font-size="15" class="mono" font-weight="bold">NTC_REG → ADC_TEMP_REG</text>
+<text x="75" y="982" font-size="16" class="muted">Hotter NTC → lower ADC voltage. Open / short leads approach a rail. Thresholds and diagnostic windows need bench validation.</text>
+<rect x="50" y="1035" width="850" height="300" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="75" y="1072" font-size="16" class="mono teal" font-weight="bold">C / MCU + DIAGNOSTICS</text>
+<rect x="355" y="1110" width="320" height="168" rx="8" fill="#162a30" stroke="#162a30" stroke-width="1.5"/>
+<text style="fill:#fffefa" x="515" y="1148" font-size="24" class="mono" text-anchor="middle">U1 PIC18F57Q43</text>
+<text style="fill:#fffefa" x="515" y="1182" font-size="19" class="mono" text-anchor="middle">Thermal supervisor</text>
+<text style="fill:#fffefa" x="515" y="1217" font-size="17" class="mono" text-anchor="middle">3 × ADC / FAULT_CMD</text>
+<text style="fill:#fffefa" x="515" y="1251" font-size="17" class="mono" text-anchor="middle">FAN_PWM / REARM</text>
+<text x="80" y="1148" font-size="16" class="mono teal">ADC_TEMP_PITCH</text>
+<polyline points="260,1142 355,1142" class="wire"/>
+<text x="80" y="1192" font-size="16" class="mono teal">ADC_TEMP_ROLL</text>
+<polyline points="260,1186 355,1186" class="wire"/>
+<text x="80" y="1236" font-size="16" class="mono teal">ADC_TEMP_REG</text>
+<polyline points="260,1230 355,1230" class="wire"/>
+<polyline points="675,1150 755,1150" class="wire"/>
+<text x="765" y="1156" font-size="14" class="mono">FAULT_CMD</text>
+<polyline points="675,1238 755,1238" class="wire"/>
+<text x="765" y="1244" font-size="14" class="mono">FAN_PWM</text>
+<text x="515" y="1093" font-size="14" class="mono coral" text-anchor="middle">+5V_LOCAL → VTG</text><polyline points="515,1098 515,1110" class="power"/><polyline points="675,1195 724,1195 724,1210" class="wire"/><path d="M710 1210H738M715 1217H733M720 1224H728" class="thin"/><text x="738" y="1203" font-size="14" class="mono">VOFF</text><text x="75" y="1309" font-size="16" class="muted">Example policy: warn 50°C · trip 60°C · all ≤45°C + manual rearm after valid sensors.</text>
+<rect x="930" y="1035" width="820" height="300" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="955" y="1072" font-size="16" class="mono teal" font-weight="bold">D / BUS 5 — SINK-ONLY FAULT OUTPUT</text>
+<text x="955" y="1131" font-size="16" class="mono">FAULT_CMD</text>
+<polyline points="1070,1125 1110,1125" class="wire"/>
+<rect x="1110" y="1115.0" width="70" height="20" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1145" y="1104" font-size="14" class="mono" text-anchor="middle">R7 10 kΩ</text>
+<polyline points="1180,1125 1260,1125" class="wire"/>
+<circle cx="1210" cy="1125" r="4" fill="#2b756d"/>
+<polyline points="1210,1125 1210,1170" class="wire"/>
+<rect x="1201.0" y="1170" width="18" height="60" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1190" y="1205" font-size="14" class="mono" text-anchor="end">R8 100 kΩ</text>
+<polyline points="1210,1230 1210,1240" class="wire"/>
+<polyline points="1196,1240 1224,1240" class="wire"/>
+<polyline points="1201,1247 1219,1247" class="wire"/>
+<polyline points="1206,1254 1214,1254" class="wire"/>
+<circle cx="1301" cy="1125" r="43" fill="none" stroke="#2b756d" stroke-width="2"/>
+<polyline points="1260,1100 1260,1150" class="wire"/>
+<polyline points="1260,1111 1320,1075" class="wire"/>
+<polyline points="1260,1139 1320,1172 1320,1190" class="wire"/>
+<path d="M1300 1161L1317 1168L1307 1151Z" fill="#2b756d"/>
+<polyline points="1320,1190 1320,1200" class="wire"/>
+<polyline points="1306,1200 1334,1200" class="wire"/>
+<polyline points="1311,1207 1329,1207" class="wire"/>
+<polyline points="1316,1214 1324,1214" class="wire"/>
+<polyline points="1320,1075 1465,1075 1465,1125 1510,1125" class="wire"/><circle cx="1510" cy="1125" r="4" fill="#fffefa" stroke="#2b756d" stroke-width="2"/><circle cx="1540" cy="1125" r="4" fill="#fffefa" stroke="#2b756d" stroke-width="2"/><path d="M1510 1120L1540 1112" class="thin"/><polyline points="1540,1125 1675,1125" class="wire"/><text x="1525" y="1149" font-size="13" class="mono" text-anchor="middle">JP1</text>
+<circle cx="1465" cy="1125" r="4" fill="#2b756d"/>
+<text x="1697" y="1133" font-size="19" class="mono coral" font-weight="bold" text-anchor="end">BUS 5</text>
+<text x="1590" y="1104" font-size="15" class="mono coral" text-anchor="middle">FAULT_N / TP4</text>
+<polyline points="1605,1125 1605,1180 1555,1180" class="wire"/><rect x="1490" y="1171" width="65" height="18" fill="#fffefa" stroke="#2b756d" stroke-width="2"/><polyline points="1490,1180 1460,1180" class="wire"/><circle cx="1460" cy="1180" r="3" fill="#fffefa" stroke="#2b756d" stroke-width="2"/><circle cx="1425" cy="1180" r="3" fill="#fffefa" stroke="#2b756d" stroke-width="2"/><path d="M1425 1175L1460 1167" class="thin"/><polyline points="1425,1180 1370,1180" class="power"/><text x="1365" y="1185" font-size="13" class="mono coral" text-anchor="end">+5 V</text><text x="1522" y="1163" font-size="13" class="mono" text-anchor="middle">R9 10 kΩ</text><text x="1438" y="1163" font-size="13" class="mono" text-anchor="middle">JP2</text><text x="1380" y="1235" font-size="17" class="mono" font-weight="bold">Q1 · P2N2222A</text>
+
+<text x="1380" y="1261" font-size="14" class="mono">JP2: standalone pullup only</text>
+<text x="955" y="1308" font-size="15" class="muted">JP1 isolates local sink. Fit JP2 only for standalone tests. One agreed bus pullup. No power-loss shutdown guarantee.</text>
+<rect x="50" y="1365" width="850" height="280" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="75" y="1402" font-size="16" class="mono teal" font-weight="bold">E / J2 — TEAM 2 × 4 IDC INTERFACE</text>
+<rect x="115" y="1435" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="130" y="1456" font-size="16" class="mono" text-anchor="middle">1</text>
+<rect x="188" y="1435" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="203" y="1456" font-size="16" class="mono" text-anchor="middle">2</text>
+<rect x="115" y="1478" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="130" y="1499" font-size="16" class="mono" text-anchor="middle">3</text>
+<rect x="188" y="1478" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="203" y="1499" font-size="16" class="mono" text-anchor="middle">4</text>
+<rect x="115" y="1521" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#c65b3b" stroke-width="2"/>
+<text x="130" y="1542" font-size="16" class="mono" text-anchor="middle">5</text>
+<rect x="188" y="1521" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="203" y="1542" font-size="16" class="mono" text-anchor="middle">6</text>
+<rect x="115" y="1564" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="130" y="1585" font-size="16" class="mono" text-anchor="middle">7</text>
+<rect x="188" y="1564" width="30" height="30" rx="4" fill="#f5f3eb" stroke="#2b756d" stroke-width="2"/>
+<text x="203" y="1585" font-size="16" class="mono" text-anchor="middle">8</text>
+<polyline points="115,1536 75,1536 75,1605 320,1605" class="wire"/>
+<text x="335" y="1612" font-size="17" class="mono coral" font-weight="bold">BUS 5 → FAULT_N</text>
+<polyline points="218,1579 285,1579" class="wire"/>
+<polyline points="285,1579 285,1589" class="wire"/>
+<polyline points="271,1589 299,1589" class="wire"/>
+<polyline points="276,1596 294,1596" class="wire"/>
+<polyline points="281,1603 289,1603" class="wire"/>
+<text x="340" y="1460" font-size="20" class="" font-weight="bold">Pin 5 · FAULT_N (sink only)</text>
+<text x="340" y="1502" font-size="20" class="" font-weight="bold">Pin 8 · shared GND / J1 return</text>
+<text x="340" y="1544" font-size="18" class="muted">Other pins follow the team bus map.</text>
+<text x="340" y="1582" font-size="18" class="coral">No 5 V or 9 V supply on ribbon.</text>
+<text x="75" y="1630" font-size="15" class="muted">Spare U3B: + → midpoint of R11/R12 (10 kΩ each, 5 V/GND); − → output. Details off-sheet.</text>
+<rect x="930" y="1365" width="820" height="280" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="955" y="1402" font-size="16" class="mono teal" font-weight="bold">F / OPTIONAL LOCAL 9 V FAN DRIVER</text>
+<text x="955" y="1450" font-size="16" class="mono coral">VIN_9V</text>
+<polyline points="1050,1444 1100,1444" class="power"/>
+<rect x="1100" y="1434.0" width="48" height="20" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1124" y="1426" font-size="13" class="mono" text-anchor="middle">F2</text>
+<polyline points="1148,1444 1285,1444" class="power"/>
+<circle cx="1250" cy="1444" r="4" fill="#c65b3b"/>
+<circle cx="1285" cy="1500" r="34" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1285" y="1506" font-size="16" class="mono" font-weight="bold" text-anchor="middle">FAN</text>
+<polyline points="1285,1444 1285,1466" class="wire"/>
+<polyline points="1285,1534 1285,1560" class="wire"/>
+<text x="1330" y="1504" font-size="17" class="mono">9 V · J6</text>
+<polyline points="1250,1444 1190,1444 1190,1471" class="wire"/>
+<polyline points="1175,1471 1205,1471" class="wire"/>
+<path d="M1175 1502L1205 1502L1190 1471Z" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<polyline points="1190,1502 1190,1548 1285,1548" class="wire"/>
+<circle cx="1285" cy="1548" r="4" fill="#2b756d"/>
+<text x="1154" y="1496" font-size="14" class="mono" text-anchor="end">D5</text>
+<polyline points="1285,1560 1285,1575 1260,1575" class="wire"/>
+<polyline points="1260,1560 1260,1608" class="wire"/>
+<polyline points="1245,1560 1245,1608" class="wire"/>
+<polyline points="1260,1597 1285,1597 1285,1614" class="wire"/>
+<polyline points="1285,1614 1285,1624" class="wire"/>
+<polyline points="1271,1624 1299,1624" class="wire"/>
+<polyline points="1276,1631 1294,1631" class="wire"/>
+<polyline points="1281,1638 1289,1638" class="wire"/>
+<text x="955" y="1550" font-size="14" class="mono">FAN_PWM</text>
+<polyline points="1050,1544 1080,1544" class="wire"/>
+<rect x="1080" y="1535.0" width="50" height="18" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1105" y="1525" font-size="13" class="mono" text-anchor="middle">330 Ω</text>
+<polyline points="1130,1544 1160,1544 1160,1582 1245,1582" class="wire"/>
+<circle cx="1160" cy="1582" r="4" fill="#2b756d"/>
+<polyline points="1160,1582 1160,1600" class="wire"/>
+<rect x="1153.0" y="1600" width="14" height="25" rx="0" fill="#fffefa" stroke="#2b756d" stroke-width="2.5"/>
+<text x="1136" y="1617" font-size="12" class="mono" text-anchor="end">100 kΩ</text>
+<polyline points="1160,1625 1160,1635" class="wire"/>
+<polyline points="1146,1635 1174,1635" class="wire"/>
+<polyline points="1151,1642 1169,1642" class="wire"/>
+<polyline points="1156,1649 1164,1649" class="wire"/>
+<text x="1410" y="1553" font-size="17" class="mono" font-weight="bold">Q2 · IRLZ44N</text>
+<text x="1410" y="1582" font-size="16" class="muted">Logic-level N-MOSFET</text>
+<text x="1410" y="1610" font-size="16" class="mono">D5: cathode to +9 V</text>
+<text x="1410" y="1634" font-size="15" class="coral">Ratings / fuse values TBD</text>
+<text x="50" y="1686" font-size="15" class="mono muted">REVIEW BEFORE BUILD: package pinouts · NTC mounting · fan + fuse ratings · regulator thermal budget · bus pull-up · ADC calibration · trip response.</text>
+</svg>

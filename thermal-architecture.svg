@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1110" viewBox="0 0 1640 1110" role="img" aria-labelledby="title desc"><title id="title">Team 103 temperature-control subsystem architecture</title><desc id="desc">Proposed architecture for three thermistor probes on pitch driver, roll driver and local regulator. Buffered and filtered ADC measurements feed a PIC18F57Q43, with a sink-only fault on bus pin 5 and an optional local fan. External fused 9 volt input supplies a local 7805; the IDC bus provides no power.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9" fill="#2b756d"/></marker></defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#162a30}.mono{font-family:Menlo,Consolas,monospace}.muted{fill:#667776}.teal{fill:#2b756d}.coral{fill:#c65b3b}.wire{stroke:#2b756d;stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}.thin{stroke:#2b756d;stroke-width:2;fill:none}.power{stroke:#c65b3b;stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round}</style>
+<rect width="1640" height="1110" fill="#f5f3eb"/>
+<text x="60" y="65" font-size="15" class="mono teal" font-weight="bold">TEMPERATURE CONTROL</text>
+<text x="60" y="116" font-size="43" class="" font-weight="bold">A thermal safety layer for a two-axis arm.</text>
+<text x="60" y="153" font-size="20" class="muted">Team 103 · RAS 304 · modular, computer-connected control system · proposed design</text>
+<rect x="1265" y="46" width="315" height="55" rx="27" fill="#162a30" stroke="#162a30" stroke-width="1.5"/>
+<text style="fill:#fffefa" x="1422" y="81" font-size="15" class="mono" text-anchor="middle">DESIGN REFERENCE / REV 01</text>
+<text x="60" y="220" font-size="15" class="mono teal" font-weight="bold">01 / MEASURE</text>
+<text x="430" y="220" font-size="15" class="mono teal" font-weight="bold">02 / CONDITION</text>
+<text x="830" y="220" font-size="15" class="mono teal" font-weight="bold">03 / DECIDE</text>
+<text x="1250" y="220" font-size="15" class="mono teal" font-weight="bold">04 / RESPOND</text>
+<rect x="60" y="255" width="290" height="142" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<rect x="80" y="276" width="43" height="35" rx="7" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="101" y="300" font-size="15" class="mono teal" font-weight="bold" text-anchor="middle">T1</text>
+<text x="80" y="341" font-size="25" class="" font-weight="bold">Pitch driver</text>
+<text x="80" y="369" font-size="16" class="muted">Probe near the heat source</text>
+<text x="330" y="302" font-size="12" class="mono muted" text-anchor="end">NTC_PITCH</text>
+<polyline points="350,326 392,326 392,380 430,380" class="wire" marker-end="url(#arrow)"/>
+<rect x="60" y="450" width="290" height="142" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<rect x="80" y="471" width="43" height="35" rx="7" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="101" y="495" font-size="15" class="mono teal" font-weight="bold" text-anchor="middle">T2</text>
+<text x="80" y="536" font-size="25" class="" font-weight="bold">Roll driver</text>
+<text x="80" y="564" font-size="16" class="muted">Probe near the heat source</text>
+<text x="330" y="497" font-size="12" class="mono muted" text-anchor="end">NTC_ROLL</text>
+<polyline points="350,521 392,521 392,490 430,490" class="wire" marker-end="url(#arrow)"/>
+<rect x="60" y="645" width="290" height="142" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<rect x="80" y="666" width="43" height="35" rx="7" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="101" y="690" font-size="15" class="mono teal" font-weight="bold" text-anchor="middle">T3</text>
+<text x="80" y="731" font-size="25" class="" font-weight="bold">Local regulator</text>
+<text x="80" y="759" font-size="16" class="muted">Probe on / near 7805 body</text>
+<text x="330" y="692" font-size="12" class="mono muted" text-anchor="end">NTC_REG</text>
+<polyline points="350,716 392,716 392,600 430,600" class="wire" marker-end="url(#arrow)"/>
+<rect x="430" y="305" width="295" height="365" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="455" y="349" font-size="26" class="" font-weight="bold">Analog front end</text>
+<circle cx="455" cy="385" r="4" fill="#c65b3b"/>
+<text x="470" y="392" font-size="20" class="" font-weight="bold">3 × 10 kΩ NTC</text>
+<text x="470" y="420" font-size="16" class="muted">10 kΩ / NTC divider at 5 V</text>
+<circle cx="455" cy="485" r="4" fill="#c65b3b"/>
+<text x="470" y="492" font-size="20" class="" font-weight="bold">3 buffered channels</text>
+<text x="470" y="520" font-size="16" class="muted">MCP6002 · two packages</text>
+<circle cx="455" cy="585" r="4" fill="#c65b3b"/>
+<text x="470" y="592" font-size="20" class="" font-weight="bold">ADC input filters</text>
+<text x="470" y="620" font-size="16" class="muted">1 kΩ + 100 nF per channel</text>
+<polyline points="725,490 830,490" class="wire" marker-end="url(#arrow)"/>
+<text x="776" y="462" font-size="14" class="mono teal" text-anchor="middle">ADC</text>
+<text x="776" y="523" font-size="14" class="mono muted" text-anchor="middle">× 3</text>
+<rect x="830" y="305" width="340" height="365" rx="12" fill="#162a30" stroke="#162a30" stroke-width="1.5"/>
+<text style="fill:#fffefa" x="856" y="346" font-size="27" class="mono" font-weight="bold">PIC18F57Q43</text>
+<text style="fill:#fffefa" x="856" y="382" font-size="20" class="" font-weight="bold">Thermal supervisor</text>
+<text style="fill:#fffefa" x="856" y="431" font-size="19" class="">Validate every probe</text>
+<text style="fill:#fffefa" x="856" y="467" font-size="19" class="">Convert ADC → temperature</text>
+<text style="fill:#fffefa" x="856" y="503" font-size="19" class="">Apply limits + hysteresis</text>
+<text style="fill:#fffefa" x="856" y="539" font-size="19" class="">Latch + report a fault</text>
+<text style="fill:#fffefa" x="856" y="611" font-size="16" class="mono">50°C WARN / 60°C TRIP</text>
+<text style="fill:#fffefa" x="856" y="639" font-size="16" class="mono">≤45°C + manual rearm</text>
+<polyline points="1170,410 1212,410 1212,370 1250,370" class="wire" marker-end="url(#arrow)"/>
+<polyline points="1170,560 1212,560 1212,617 1250,617" class="wire" marker-end="url(#arrow)"/>
+<rect x="1250" y="280" width="330" height="195" rx="12" fill="#fffefa" stroke="#c65b3b" stroke-width="2"/>
+<text x="1275" y="320" font-size="25" class="" font-weight="bold">Shared fault signal</text>
+<text x="1275" y="356" font-size="20" class="mono coral" font-weight="bold">BUS 5 · FAULT_N</text>
+<text x="1275" y="393" font-size="17" class="muted">Active low · NPN open collector</text>
+<text x="1275" y="423" font-size="16" class="muted">Only sinks current to shared GND.</text>
+<text x="1275" y="450" font-size="16" class="muted">Pull-up belongs to the bus design.</text>
+<rect x="1250" y="525" width="330" height="195" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="1275" y="566" font-size="25" class="" font-weight="bold">Optional local cooling</text>
+<text x="1275" y="603" font-size="17" class="mono teal" font-weight="bold">9 V FAN · LOW-SIDE PWM</text>
+<text x="1275" y="641" font-size="17" class="muted">Local MOSFET + flyback diode.</text>
+<text x="1275" y="672" font-size="16" class="muted">Fan demand may rise before trip.</text>
+<text x="1275" y="701" font-size="16" class="muted">Trip / shutdown response by team.</text>
+<text x="830" y="732" font-size="13" class="mono coral" font-weight="bold">LIMITS ARE ILLUSTRATIVE</text>
+<text x="830" y="757" font-size="16" class="muted">Confirm thermal limits and system response</text>
+<text x="830" y="780" font-size="16" class="muted">against the final hardware and team protocol.</text>
+<rect x="60" y="846" width="1015" height="197" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="85" y="882" font-size="15" class="mono teal" font-weight="bold">LOCAL POWER</text>
+<rect x="85" y="904" width="190" height="92" rx="8" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="180.0" y="940" font-size="20" class="" font-weight="bold" text-anchor="middle">External 9 V</text>
+<text x="180.0" y="973" font-size="14" class="muted" text-anchor="middle">Dedicated module input</text>
+<rect x="350" y="904" width="145" height="92" rx="8" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="422.5" y="940" font-size="20" class="" font-weight="bold" text-anchor="middle">Fuse</text>
+<text x="422.5" y="973" font-size="14" class="muted" text-anchor="middle">Rating TBD</text>
+<rect x="570" y="904" width="180" height="92" rx="8" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="660.0" y="940" font-size="20" class="" font-weight="bold" text-anchor="middle">7805 regulator</text>
+<text x="660.0" y="973" font-size="14" class="muted" text-anchor="middle">Input / output caps</text>
+<rect x="825" y="904" width="220" height="92" rx="8" fill="#f5f3eb" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="935.0" y="940" font-size="20" class="" font-weight="bold" text-anchor="middle">Local +5 V</text>
+<text x="935.0" y="973" font-size="14" class="muted" text-anchor="middle">MCU · buffers · dividers</text>
+<polyline points="275,949 350,949" class="power" marker-end="url(#arrow)"/>
+<polyline points="495,949 570,949" class="power" marker-end="url(#arrow)"/>
+<polyline points="750,949 825,949" class="power" marker-end="url(#arrow)"/>
+<text x="85" y="1025" font-size="14" class="muted">9 V fan supply branches locally after input protection; fuse and heat dissipation require final sizing.</text>
+<rect x="1115" y="846" width="465" height="197" rx="12" fill="#fffefa" stroke="#cbd2c7" stroke-width="1.5"/>
+<text x="1140" y="882" font-size="15" class="mono teal" font-weight="bold">TEAM INTERFACE · 2 × 4 IDC</text>
+<text x="1140" y="928" font-size="18" class="mono coral" font-weight="bold">PIN 5</text>
+<text x="1240" y="928" font-size="21" class="" font-weight="bold">FAULT_N sink only</text>
+<text x="1140" y="970" font-size="18" class="mono teal" font-weight="bold">PIN 8</text>
+<text x="1240" y="970" font-size="21" class="" font-weight="bold">Common GND</text>
+<text x="1140" y="1014" font-size="19" class="muted">No supply power on the ribbon.</text>
+<text x="60" y="1080" font-size="15" class="mono muted">PROPOSED ARCHITECTURE · Physical placement, pin assignments, limits and bus behavior remain to be verified.</text>
+</svg>

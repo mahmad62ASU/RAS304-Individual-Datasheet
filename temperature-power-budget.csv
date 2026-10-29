@@ -1,0 +1,15 @@
+Load,Quantity,Total mA,Basis
+PIC / Nano board,1,100.00,Operating allowance; unverified
+NTC divider branches,3,1.50,Near-short current bound for 10 kΩ pullups
+MCP6002 amplifier channels,4,0.68,170 µA per amplifier under datasheet conditions
+Status LEDs,3,9.00,3 mA allocation each
+Fault GPIO / base,1,0.50,Conservative allowance
+Standalone fault pullup,1,0.50,Only one bus pullup installed
+Regulator minimum-load resistor,1,5.00,1 kΩ at nominal 5 V
+Other GPIO / spare,—,10.00,Planning allowance
+Total,,127.18,Planning allocation
+25% margin total,,158.975,127.18 * 1.25
+Rounded allocation,,160,Used for regulator screening
+Regulator quiescent allowance,,6,Check complete datasheet conditions
+Optional fan allowance,,200,Unselected; startup excluded
+9 V input with fan,,366,Before fan startup

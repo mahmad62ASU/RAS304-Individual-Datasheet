@@ -1,0 +1,77 @@
+THERMAL CONTROL REFERENCE DESIGN — RAS304 TEAM 103
+Research date: 29 October 2026. Proposed reference architecture; no prototype, measured temperature accuracy, measured response time, or completed firmware is claimed.
+
+LOCKED SCOPE
+Ayaan's current assignment is temperature control, superseding earlier pitch/optical assignments. Use three local NTC channels: pitch motor-driver surface, roll motor-driver surface, and the temperature-board 5 V regulator. Source architecture is the old team Product Requirements document, which requires local 9 V-to-5 V regulation, PIC18F57Q43 Curiosity Nano, fuse/status indication, 2x4 IDC, common ground and active-low shared fault. Old ownership tables are stale. Do not imply this proposed three-probe implementation has already been approved by the team.
+
+PRIMARY CIRCUIT
+For each channel: regulated 5 V -> 10.0 kOhm 1% fixed resistor -> SENSE -> Vishay NTCLE100E3103JB0 -> GND. Connect SENSE to an MCP6002 unity-gain follower. Two MCP6002 packages provide three used buffer channels; configure the unused channel as a follower of a quiet midrail divider rather than leaving its inputs floating. From each buffer output use a 1 kOhm series resistor to the PIC ADC pin and 100 nF from that ADC pin to ground. This isolates the op amp from the capacitor and provides a nominal 100 us output-filter time constant (1.59 kHz corner). Add 100 nF local bypass at each amplifier package. Proposed PIC channels RA0/RA1/RA2, module pads 43/44/45 respectively; confirm against board revision and firmware configuration before fabrication.
+
+The Vishay part is 10 kOhm at 25 C with +/-5% R25 tolerance; B25/85=3977 K with +/-0.75% beta tolerance. Its coating has no specified electrical insulation properties; use an electrically insulating thermal attachment and follow mounting guidance. The manufacturer lists an approximately 15 s thermal time constant for information, so fast electrical shutdown does not mean immediate hotspot detection. MCP6002 is available in PDIP, has rail-to-rail input/output, 1.8–6.0 V supply capability and a 170 uA maximum quiescent-current figure per amplifier at specified test conditions. [S1,S2]
+
+CALCULATED EXAMPLES, NOT CALIBRATION DATA
+Beta-model approximation:
+R(T)=10000*exp(3977*(1/(T+273.15)-1/298.15)) Ohm.
+V_SENSE=VDD*R(T)/(10000+R(T)).
+R=10000*V_SENSE/(VDD-V_SENSE).
+T_C=1/(1/298.15+ln(R/10000)/3977)-273.15.
+Using ADC reference=the same 5 V rail makes the ideal ratio ratiometric. For display use ratio approx code/4095, with endpoint guards; exact ADC code bins and analog errors still apply.
+
+Temperature   NTC Ohm     SENSE V @5V    12-bit code (rounded display approximation)
+25 C          10000.00    2.50000       2048
+45 C           4323.45    1.50922       1236
+50 C           3563.13    1.31354       1076
+60 C           2462.62    0.98800        809
+70 C           1739.06    0.74072        607
+
+These equations are an engineering approximation using the selected beta. Use the manufacturer's resistance/temperature curve and calibration for final thresholds, particularly outside 25–85 C. Do not claim +/-1 C system accuracy from ADC resolution. Sensor R/B tolerance, fixed resistor tolerance, contact temperature gradient, airflow, buffer offset and ADC errors all matter. At 25 C each divider draws 0.25 mA; its thermistor dissipates 0.625 mW. Worst-case branch current approaches 0.5 mA when shorted. These are calculations.
+
+PIC AND FIRMWARE BEHAVIOR
+Microchip documents a 12-bit multiplexed ADC. Its recommended analog source impedance is <=10 kOhm, and an acquisition interval is required after changing channels. The proposed buffered 1 kOhm source is compatible in principle, but select ADC clock/acquisition settings against the full datasheet and let the external filter settle. External 5 V powers VTG with VOFF tied to GND; leave VBUS isolated from the external 5 V source. [S3,S4]
+
+Illustrative reference settings: warning at >=50 C, shutdown at >=60 C, deliberate manual rearm permitted only when every valid channel is <=45 C. These values are examples for a simulator/reference design, not established motor/regulator limits. Actual limits depend on the selected motor driver, regulator junction-to-surface relation, mounting and ambient. Optional local fan can turn on at the warning level and off below45 C; keep it running during a hot latched fault while power remains available. All channels must be valid before requesting motor permission. Open circuit tends toward full scale and short circuit toward zero; treat near-rail codes as sensor faults, guard division/log endpoints and latch a shutdown request. Exact plausibility thresholds must allow the intended measurement range. Do not hide invalid readings in a rolling average. A 10 ms scan of all three channels is a proposed scheduling target, not evidence of a <20 ms complete response.
+
+FAULT INTERFACE
+Use one P2N2222A NPN: collector to local FAULT_N / IDC pin5 through an isolation jumper; emitter to commonGND / IDC pin8; PIC digital FAULT_ASSERT via10 kOhm to base;100 kOhm base-to-emitter pulldown. This is an open-collector sink and must never drive the bus high. A5 V GPIO supplies roughly0.4 mA base drive. One10 kOhm pullup to the agreed5 V rail across the complete bus creates about0.5 mA bus sink load; provide a removable local pullup for standalone work and remove it when the team's pullup is installed. Confirm sink VOL and receiver-low margins on the bench. The onsemi P2N2222A pinout is1collector,2base,3emitter; transistor pinouts are manufacturer-specific. [S5]
+
+Firmware should assert during its initialization, invalid sensor, overtemperature and latched-fault states, and retain the assertion until cooling plus manual rearm. At MCU reset the pulldown turns the transistor off: this circuit alone does NOT guarantee a fault assertion on MCU failure, reboot or complete local power loss. The master/drive boards must start disabled and require an explicit valid-node/arm sequence. Independent hardware protection is a future option; avoid describing this as a certified safety controller. Team REQ-SW-02 is a target of <20 ms from bus fault assertion to motor cutoff, requiring an oscilloscope test on the integrated system; thermistor heating delay is a separate concern.
+
+Do not allocate IDC pin7 to temperature: the existing published pinout assigns7 to joint load and6 to roll position. All other IDC signal lines pass through or remain unconnected locally. Detailed temperature telemetry may use the Nano USB serial locally; any added inter-node protocol/header remains an integration decision.
+
+OPTIONAL FAN, LOCAL POWER ONLY
+Use an actual9 V-rated two-wire fan selected after start/stall-current checks. Preliminary sizing allowance0.20 A running is not a verified fan maximum. Fan+ goes to the fused/reverse-polarity-protected9 V branch, fan- to IRLZ44NPBF drain, sourceGND. Drive gate from5 V GPIO through330 Ohm;100 kOhm gate-to-source pulldown. Add local bulk/ceramic bypass and an appropriately rated catch diode across the fan supply path (cathode+9 V, anode drain); check whether the selected electronically commutated fan permits supply PWM. Begin with simple on/off control. Keep fan current out of the5 V linear regulator and separate high-current returns from analog ground routing. Infineon's IRLZ44N datasheet gives55 V VDS and maximum RDS(on)0.025 Ohm atVGS5 V /25 A test condition (0.035 Ohm at4 V /21 A). At a hypothetical0.20 A,0.025 Ohm gives1 mW conduction loss at25 C; this is not a complete switching/thermal rating. [S6]
+
+PRELIMINARY POWER BUDGET
+5 V loads, simultaneous conservative allowances:
+PIC/Nano operating allocation (unverified):100.00 mA
+Three NTC branches at near-short:1.50 mA
+Four MCP6002 channels using170 uA each:0.68 mA
+Three status LEDs at3 mA each:9.00 mA
+Fault GPIO/base allowance:0.50 mA
+Standalone fault pullup load:0.50 mA
+1 kOhm regulator minimum-load resistor:5.00 mA
+Other GPIO, pullups and spare allowance:10.00 mA
+Total planned:127.18 mA
+With25% margin:158.98 mA, round to0.160 A logic allocation.
+
+Proposed regulator L7805ACV rather than ordinary L7805CV: A-series provides4.8–5.2 V across specified5 mA–1 A and7.5–18 V input conditions, matching the old5 V+/-0.2 V target;6 mA quiescent maximum appears under its stated conditions. The1 kOhm resistor ensures5 mA minimum at nominal5 V. Use datasheet input/output bypass recommendations and capacitor voltage ratings. At nominal9 V and0.160 A, screening dissipation=(9-5)*0.160+9*0.006=0.694 W. ST lists50 C/W junction-to-ambient for TO-220 in stated conditions, yielding an illustrative34.7 C rise; actual enclosure, mounting, source tolerance and heatsink must be tested. [S7]
+
+Nominal input-current planning with the optional0.20 A fan is0.160+0.006+0.200=0.366 A before fan startup. A regulated9 V/1 A adapter is only a preliminary source candidate; verify tolerance, fan startup/stall, cable drop, regulator minimum input and fuse coordination. A fuse value cannot be finalized from running-current allowance alone. All budget values are sizing allocations, not a completed maximum-current audit or measurements.
+
+OPTIONAL HARDWARE COMPARATOR ALTERNATIVE (NOT IN PRIMARY SCHEMATIC)
+If independent comparator backup is later added, LM393AP PDIP is the through-hole candidate; LM393B is the improved newer family but is not listed inPDIP by TI. Both are open collector. Power from5 V and feed an attenuated buffered sensor voltage (10k/10k divider=>0–2.5 V), so both comparator inputs stay below the approximatelyVCC-2 V full-temperature common-mode ceiling. For a nominal60 C trip, half-sensor is0.49400 V; a91k-over10k reference divider gives0.49505 V. This is a starting calculation, not a toleranced trip design. LM393AP needs its own older current/offset specifications; do not borrow B-version figures. Two comparators only cover two hot channels unless more hardware is added; open-wire checking and latching still need explicit circuitry. [S8]
+
+COMPONENT ALTERNATIVE
+Analog Devices TMP36 (TO-92) is a credible analog alternative:2.7–5.5 V supply,10 mV/C scale,750 mV at25 C (therefore500 mV intercept), specified-40–125 C. The familiar+/-2 C across temperature figure is typical, not guaranteed complete-system accuracy. It requires a different transfer equation and an accuracy/reference budget; do not mix its equation with the NTC. This is a comparison candidate, not an installed sensor. [S9]
+
+PRIMARY SOURCES VERIFIED THROUGH BROWSER RESEARCH
+S1 Vishay NTCLE100E3, revision7May2025, pp1–2 (R/B/order code, mounting caveats): https://www.vishay.com/docs/29049/ntcle100.pdf
+S2 Microchip MCP6001/2/4 DS20001733L, pp1,3 (PDIP, rail-to-rail, supply,offset/current): https://ww1.microchip.com/downloads/en/DeviceDoc/MCP6001-1R-1U-2-4-1-MHz-Low-Power-Op-Amp-DS20001733L.pdf
+S3 Microchip PIC18F27/47/57Q43 ADC overview and acquisition: https://onlinedocs.microchip.com/oxy/GUID-61202E6F-BC03-4D81-AAB9-269E87F9B49C-en-US-22/GUID-CFD6AB64-0E28-4F93-ABBB-4CFD8C94FA63.html ; https://onlinedocs.microchip.com/oxy/GUID-61202E6F-BC03-4D81-AAB9-269E87F9B49C-en-US-22/GUID-CA56407E-DEFE-41B2-B875-45E3CB6234AF.html
+S4 Microchip Curiosity Nano DS40002186B, section3.3.2 and connector map: https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/UserGuides/PIC18F57Q43-Curiosity-Nano-HW-UserGuide-DS40002186B.pdf
+S5 onsemi P2N2222A/D, p1 pinout,p2 electrical characteristics: https://www.onsemi.com/download/data-sheet/pdf/p2n2222a-d.pdf
+S6 Infineon IRLZ44NPbF datasheet,p2 electrical characteristics: https://www.infineon.com/assets/row/public/documents/24/49/infineon-irlz44n-datasheet-en.pdf
+S7 ST L78 DS0422Rev38,pp4,6 (thermal,L7805A specifications): https://www.st.com/resource/en/datasheet/l78.pdf
+S8 TI SLCS005AH,Apr2025,pp1,6,8–9 (packages,common-mode,family differences): https://www.ti.com/lit/ds/symlink/lm393.pdf
+S9 Analog Devices TMP35/36/37 RevH,p1: https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf
+

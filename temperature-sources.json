@@ -1,0 +1,42 @@
+{
+  "updated": "2026-10-29",
+  "status": "proposed reference design; purchasing quotes pending",
+  "references": [
+    {
+      "title": "Team 103 report",
+      "url": "https://ras304-f26-103.github.io/"
+    },
+    {
+      "title": "Team product requirements",
+      "url": "https://github.com/RAS304-F26-103/RAS304-F26-103.github.io/blob/main/docs/04-Product-Requirements.md"
+    },
+    {
+      "title": "Vishay NTCLE100E3 datasheet",
+      "url": "https://www.vishay.com/docs/29049/ntcle100.pdf"
+    },
+    {
+      "title": "Microchip MCP6002 datasheet",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP6001-1R-1U-2-4-1-MHz-Low-Power-Op-Amp-DS20001733L.pdf"
+    },
+    {
+      "title": "PIC18F57Q43 Curiosity Nano guide",
+      "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/UserGuides/PIC18F57Q43-Curiosity-Nano-HW-UserGuide-DS40002186B.pdf"
+    },
+    {
+      "title": "ST L78 regulator datasheet",
+      "url": "https://www.st.com/resource/en/datasheet/l78.pdf"
+    },
+    {
+      "title": "onsemi P2N2222A datasheet",
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/p2n2222a-d.pdf"
+    },
+    {
+      "title": "Infineon IRLZ44N datasheet",
+      "url": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-irlz44n-datasheet-en.pdf"
+    },
+    {
+      "title": "Analog Devices TMP36 alternative",
+      "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf"
+    }
+  ]
+}
