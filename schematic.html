@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Schematic · Ayaan Ahmad · RAS 304 Temperature Control</title><meta name="description" content="Muhammad Ayaan Ahmad’s temperature-control subsystem for Team 103’s modular two-degree-of-freedom robotic arm. Architecture, components, circuit, BOM, power budget and review."><meta name="theme-color" content="#172b30"><link rel="icon" href="thermal-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="thermal.css"><script defer src="thermal.js"></script></head><body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="index.html"><img src="thermal-mark.svg" alt="" width="36" height="36"><span>AYAAN AHMAD<small>RAS 304 / THERMAL CONTROL</small></span></a><div class="top-links"><a href="https://ras304-f26-103.github.io/" target="_blank" rel="noopener">Team 103 ↗</a><button class="search-trigger" aria-label="Search this datasheet">Search <kbd>/</kbd></button><button class="mobile-menu" aria-label="Open navigation" aria-expanded="false">Menu ☰</button></div></header><div class="site-layout"><aside class="sidebar"><div><p class="sidebar-label">INDIVIDUAL DATASHEET</p><nav aria-label="Design sections"><a href="index.html" class="nav-link "><span>01</span>Overview<b>↗</b></a><a href="block-diagram.html" class="nav-link "><span>02</span>Block diagram<b>↗</b></a><a href="components.html" class="nav-link "><span>03</span>Component selection<b>↗</b></a><a href="bom.html" class="nav-link "><span>04</span>Bill of materials<b>↗</b></a><a href="schematic.html" class="nav-link active" aria-current="page"><span>05</span>Schematic<b>↗</b></a><a href="thermal-power.html" class="nav-link "><span>06</span>Power budget<b>↗</b></a><a href="review.html" class="nav-link "><span>07</span>Review & resources<b>↗</b></a></nav></div><div class="sidebar-bottom"><span class="tag"><i></i> TEAM 103 / NODE 2</span><p>Arizona State University<br>Fall 2026 · Team 103</p><a href="https://github.com/mahmad62asu/RAS304-Individual-Datasheet" target="_blank" rel="noopener">View repository ↗</a></div></aside><main id="main">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pitch Axis Schematic · Ayaan Ahmad · RAS 304</title><meta name="description" content="Pitch-axis motor controller schematic and PCB for RAS 304, Team 103. KiCad drawings, parts, and verification."><meta name="theme-color" content="#172b30"><link rel="icon" href="thermal-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="pitch-design.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="index.html"><img src="thermal-mark.svg" alt="" width="36" height="36"><span>AYAAN AHMAD<small>RAS 304 / PITCH AXIS</small></span></a><div class="top-links"><a href="https://ras304-f26-103.github.io/" target="_blank" rel="noopener">Team 103 ↗</a></div></header><div class="site-layout"><aside class="sidebar"><div><p class="sidebar-label">INDIVIDUAL DATASHEET</p><nav aria-label="Design sections"><a href="index.html" class="nav-link "><span>01</span>Overview<b>↗</b></a><a href="block-diagram.html" class="nav-link "><span>02</span>Block diagram<b>↗</b></a><a href="components.html" class="nav-link "><span>03</span>Component selection<b>↗</b></a><a href="bom.html" class="nav-link "><span>04</span>Bill of materials<b>↗</b></a><a href="schematic.html" class="nav-link active" aria-current="page"><span>05</span>Schematic<b>↗</b></a><a href="thermal-power.html" class="nav-link "><span>06</span>Power budget<b>↗</b></a><a href="review.html" class="nav-link "><span>07</span>Review & resources<b>↗</b></a><a href="pcb.html" class="nav-link "><span>08</span>PCB Design<b>↗</b></a></nav></div><div class="sidebar-bottom"><span class="tag"><i></i> TEAM 103 / NODE 2</span><p>Arizona State University<br>Fall 2026 · Team 103</p><a href="https://github.com/mahmad62asu/RAS304-Individual-Datasheet" target="_blank" rel="noopener">View repository ↗</a></div></aside><main id="main">
 <header class="page-heading">
-  <h1>Schematics</h1>
+  <p class="eyebrow">Team 103 · Node 2 · Revision 1.2</p><h1>Schematic</h1><p class="intro">Pitch-axis motor control and hardware fault shutdown.</p>
 </header>
 <section class="section" id="overview">
   <h2>Overview</h2>
@@ -20,7 +20,7 @@
 <tr><td>Motor drive</td><td>The H-bridge controls motor direction and speed. J6 connects the two motor wires.</td><td>U3 (DRV8871), JP5, J6</td></tr>
 <tr><td>Current measurement</td><td>The shunt measures driver return current. An amplifier and low-pass filter prepare the signal for the ADC.</td><td>R3, U4A, R4–R6, C8</td></tr>
 <tr><td>Fault shutdown</td><td>A comparator detects overcurrent. The latch and logic gates block both motor inputs during a fault until the controller rearms the circuit.</td><td>U5A–U8, Q1, JP4, JP6</td></tr>
-<tr><td>Team connections</td><td>J3 carries team commands and the shared fault signal. J4 and J5 carry upstream receive and downstream transmit signals.</td><td>J3–J5 (keyed 2×4 IDC)</td></tr>
+<tr><td>Team connections</td><td>J4 carries both UART receive and transmit to the main controller. J3 retains auxiliary control and pass-through signals; its harness needs separate verification.</td><td>J3, J4 (keyed 2×4 IDC)</td></tr>
 <tr><td>Debug and expansion</td><td>The pushbutton sends a debug or arm request. The LEDs show power and status, and J2 exposes spare pins.</td><td>SW1, D4–D7, J2</td></tr>
 </tbody></table></div>
 </section>
@@ -33,8 +33,8 @@
 <tr><td>PWM_CMD</td><td>RB1</td><td>10</td><td>Pitch PWM command from J3</td></tr>
 <tr><td>PWM_FWD</td><td>RC2</td><td>7</td><td>Forward PWM to motor input logic</td></tr>
 <tr><td>PWM_REV</td><td>RC3</td><td>8</td><td>Reverse PWM to motor input logic</td></tr>
-<tr><td>UART_RX</td><td>RC7</td><td>19</td><td>Receives upstream data from J4</td></tr>
-<tr><td>UART_TX</td><td>RC6</td><td>13</td><td>Sends data downstream through J5</td></tr>
+<tr><td>UART_RX</td><td>RC7</td><td>19</td><td>Receives main-controller data through J4 pin 1</td></tr>
+<tr><td>UART_TX</td><td>RC6</td><td>13</td><td>Sends data to the main controller through J4 pin 2</td></tr>
 <tr><td>HEARTBEAT</td><td>RD0</td><td>20</td><td>Blue heartbeat LED</td></tr>
 <tr><td>BUTTON_N</td><td>RD1</td><td>21</td><td>Active-low debug or arm button</td></tr>
 <tr><td>FAULT_N</td><td>RD2</td><td>22</td><td>Shared active-low fault input</td></tr>
@@ -43,15 +43,18 @@
 </section>
 <section class="section" id="design-notes">
   <h2>Design Notes</h2>
+  <p>Revision 1.2 adds JP7, a two-pin jumper between VOFF and ground, for external 5 V operation through JP1/VTG. The drawing is arranged in compact functional sections.</p>
+  <p>All 15 capacitors are non-polar. C1 is Nichicon UVP1V471MHD (470 µF, 35 V bipolar), C7 is UVP1V101MPD (100 µF, 35 V bipolar), and C4 is TDK C3225X7R1E106K250AC (10 µF, 25 V ceramic). The remaining capacitors are ceramic.</p>
+  <p>The saved schematic ERC reports 0 errors and 0 warnings. The report records the configured ignored checks; this is not a bench-test result.</p>
   <p>The current-sense amplifier has a gain of 21. R6 and C8 filter the signal at about 1.59 kHz before the ADC.</p>
-  <p>J4 and J5 use pin 1 for data and pin 8 for ground. Confirm the cable pinout with the team before hookup.</p>
+  <p>J4 uses pin 1 for RX, pin 2 for TX and pin 8 for ground; pins 3–7 are unused. The main board must provide complementary TX/RX directions. Its published pin mapping does not yet establish those directions, so confirm them with the team before hookup.</p>
 </section>
 <section class="section" id="resources">
   <h2>Resources</h2>
   <div class="download-list">
     <a href="Pitch-Axis-Schematic.pdf" download><span><b>Schematic PDF</b><small>Full-size KiCad drawing</small></span><span aria-hidden="true">↗</span></a>
-    <a href="Pitch-Axis-KiCad.zip" download><span><b>KiCad project ZIP</b><small>Editable schematic and libraries</small></span><span aria-hidden="true">↗</span></a>
+    <a href="pcb.html"><span><b>PCB Design</b><small>Current board, checks and complete KiCad project</small></span><span aria-hidden="true">↗</span></a>
   </div>
-  <p><a href="thermal-circuit.svg" download>Temperature-control circuit reference (SVG)</a></p>
+  <p><a href="Parts-and-Reasons.html">Parts list and reasons</a> · <a href="Bill-of-Materials.csv" download>Bill of materials CSV</a> · <a href="ERC-Report.txt">ERC report</a></p>
 </section>
-<nav class="page-nav" aria-label="Previous and next page"><a href="bom.html"><small>← PREVIOUS</small><strong>Bill of materials</strong></a><a href="thermal-power.html"><small>NEXT →</small><strong>Power budget</strong></a></nav><footer><span>Muhammad Ayaan Ahmad · Team 103</span><span>Updated 14 Nov 2026 <a href="#top" aria-label="Back to top">↑</a></span></footer></main></div><dialog id="search-dialog"><div class="search-head"><label for="site-search">Search the datasheet</label><button id="close-search" aria-label="Close search">✕</button></div><input id="site-search" type="search" placeholder="Try sensor, fault, power, calibration…"><div id="search-results"></div></dialog><span id="top"></span></body></html>
+<nav class="page-nav" aria-label="Previous and next page"><a href="bom.html"><small>← PREVIOUS</small><strong>Bill of materials</strong></a><a href="pcb.html"><small>NEXT →</small><strong>PCB Design</strong></a></nav><footer><span>Muhammad Ayaan Ahmad · Team 103</span><span>Updated 16 Nov 2026 <a href="#top" aria-label="Back to top">↑</a></span></footer></main></div><span id="top"></span></body></html>

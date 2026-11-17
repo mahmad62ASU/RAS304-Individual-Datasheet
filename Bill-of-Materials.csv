@@ -1,0 +1,85 @@
+Reference,Value,Symbol,Footprint,MPN,Capacitor type,Rating / tolerance,Notes,Reason
+C1,470uF / 35V NP,Device:C,MAA_Footprints:C_Radial_D12.5mm_H25.0mm_P5.00mm_MAA,UVP1V471MHD,Non-polar (bipolar electrolytic),470uF / 35V NP,,Bulk capacitance on the protected DC input; specified bipolar part has no polarity.
+C2,330nF / 25V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),330nF / 25V,,Local input bypass for the 5 V regulator.
+C3,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,High-frequency output bypass for the 5 V regulator.
+C4,10uF / 25V,Device:C,MAA_Footprints:C_1210_3225Metric_MAA,C3225X7R1E106K250AC,Non-polar (ceramic),10uF / 25V,,5 V output bulk capacitance; non-polar ceramic.
+C5,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local bypass on the Nano VTG supply.
+C6,100nF / 50V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 50V,,High-frequency bypass between motor supply and driver power ground.
+C7,100uF / 35V NP,Device:C,MAA_Footprints:C_Radial_D10.0mm_H16.0mm_P5.00mm_MAA,UVP1V101MPD,Non-polar (bipolar electrolytic),100uF / 35V NP,,Motor-driver bulk capacitance; specified bipolar part has no polarity.
+C8,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Low-pass filter with R6 on the current ADC input.
+C9,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Filters the overcurrent reference voltage.
+C10,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local MCP6002 supply bypass.
+C11,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local LM393 supply bypass.
+C12,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local latch supply bypass.
+C13,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local AND-gate supply bypass.
+C14,100nF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),100nF / 16V,,Local reset-supervisor supply bypass.
+C15,2.2uF / 16V,Device:C,MAA_Footprints:C_0805_2012Metric_MAA,,Non-polar (ceramic),2.2uF / 16V,,Filters switch bounce with the button resistor network.
+D1,1N5822,Device:D_Schottky,MAA_Footprints:D_DO-201AD_P15.24mm_Horizontal_MAA,,,,,Series reverse-polarity protection on the DC input.
+D2,SMBJ15A,Device:D_Zener,MAA_Footprints:D_SMB_MAA,,,,,Transient suppression on the protected DC input.
+D3,1N5819RLG,Device:D_Schottky,MAA_Footprints:D_DO-41_SOD81_P10.16mm_Horizontal_MAA,,,,,Allows the power-on-reset output to pull the fault line low.
+D4,Amber,Device:LED,MAA_Footprints:LED_0805_2012Metric_MAA,,,,,Protected input-power indicator.
+D5,Green,Device:LED,MAA_Footprints:LED_0805_2012Metric_MAA,,,,,5 V power indicator.
+D6,Blue,Device:LED,MAA_Footprints:LED_0805_2012Metric_MAA,,,,,Firmware heartbeat indicator.
+D7,Red,Device:LED,MAA_Footprints:LED_0805_2012Metric_MAA,,,,,Not-armed indicator.
+F1,1A fast,Device:Fuse,MAA_Footprints:Fuseholder_Littelfuse_100_series_5x20mm_MAA,,,,,Main input fuse; retain the specified 1 A fast fuse.
+F2,250mA fast,Device:Fuse,MAA_Footprints:Fuseholder_Littelfuse_100_series_5x20mm_MAA,,,,,Separate 250 mA fuse for the regulator/control branch.
+J1,PJ-102AH / center +,Connector:Barrel_Jack_Switch,MAA_Footprints:BarrelJack_CUI_PJ-102AH_Horizontal_MAA,,,,,Center-positive DC power input.
+J2,SPARE GPIO,Connector_Generic:Conn_01x08,MAA_Footprints:PinHeader_1x08_P2.54mm_Vertical_MAA,,,,,"Access to spare microcontroller pins, 5 V and ground."
+J3,AUX I/O,Connector_Generic:Conn_02x04_Odd_Even,MAA_Footprints:AdamTech_BHR-08-VUA_2x04_P2.54mm_MAA,,,,Auxiliary I/O; not verified as team UART cable,Auxiliary control and pass-through signals; verify the harness before use.
+J4,UART TO MAIN,Connector_Generic:Conn_02x04_Odd_Even,MAA_Footprints:AdamTech_BHR-08-VUA_2x04_P2.54mm_MAA,,,,"Pin1 RX, pin2 TX, pin8 GND; confirm complementary main-board TX/RX",One keyed ribbon connector for both UART directions and ground.
+J6,MOTOR,Connector_Generic:Conn_01x02,"MAA_Footprints:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal_MAA",,,,,Two-wire motor connection.
+JP1,POWER / fitted,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Connects external regulated 5 V to Nano VTG; removable for power isolation.
+JP2,DIR / fitted,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Removable direction-command connection.
+JP3,PWM / fitted,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Removable PWM-command connection.
+JP4,FAULT / fitted,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Removable shared-fault connection.
+JP5,MOTOR ISOLATE,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Disconnects motor power for testing.
+JP6,ONE BUS PULLUP,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,,Enables the fault pull-up; only one pull-up is intended on a shared fault bus.
+JP7,VOFF / fitted,Jumper:Jumper_2_Open,MAA_Footprints:PinHeader_1x02_P2.54mm_Vertical_MAA,,,,Normally fitted; VOFF to ground,Connects VOFF to ground to disable the Nano onboard regulator when using external VTG power.
+Q1,KSP2222ABU,Transistor_BJT:Q_NPN_EBC,MAA_Footprints:TO-92_Inline_Wide_MAA,,,,,Open-collector software-fault output controlled by the PIC.
+R1,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k / 0.25W,,5 V regulator preload/bleeder.
+R2,100k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,100k 1% / 0.25W,,Sets the DRV8871 current-regulation limit.
+R3,0.10R / 2W,Device:R_US,MAA_Footprints:R_2512_6332Metric_MAA,,,0.10R 1% / 2W,,0.10 ohm current-sense shunt in the driver return path.
+R4,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k 1% / 0.25W,,Current-amplifier gain resistor to ground.
+R5,20k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,20k 1% / 0.25W,,Current-amplifier feedback resistor; gain is 1 + 20k/1k = 21.
+R6,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k 1% / 0.25W,,Current ADC input filter resistor with C8.
+R7,39k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,39k 1% / 0.25W,,Upper resistor of the overcurrent-reference divider.
+R8,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k 1% / 0.25W,,Lower resistor of the overcurrent-reference divider.
+R9,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Pull-down keeps forward PWM low during reset.
+R10,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Pull-down keeps reverse PWM low during reset.
+R11,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Pull-down keeps the latch clock low during reset.
+R12,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Pull-up for the latch D and inactive preset inputs.
+R13,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,"Fault-line pull-up, enabled through JP6."
+R14,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Limits Q1 base current.
+R15,100k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,100k / 0.25W,,Q1 base pull-down to keep the transistor off by default.
+R16,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k / 0.25W,,Debug-button pull-up; holds BUTTON_N high when released.
+R17,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k / 0.25W,,Limits button/capacitor discharge current.
+R18,4.7k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,4.7k / 0.25W,,Limits amber input-power LED current.
+R19,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k / 0.25W,,Limits green 5 V LED current.
+R20,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k / 0.25W,,Limits blue heartbeat LED current.
+R21,1k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,1k / 0.25W,,Limits red not-armed LED current.
+R22,100k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,100k / 0.25W,,Direction-command pull-down.
+R23,100k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,100k / 0.25W,,PWM-command pull-down.
+R24,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k,,Biases the spare op-amp input from VTRIP.
+R25,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k,,Biases the spare comparator positive input to ground.
+R26,10k,Device:R_US,MAA_Footprints:R_1206_3216Metric_MAA,,,10k,,Biases the spare comparator negative input from VTRIP.
+SW1,B3F-1000,Switch:SW_Push,MAA_Footprints:SW_PUSH_6mm_MAA,,,,,Momentary debug/arm-request button.
+TP1,+VDC,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to +VDC.
+TP2,+5V,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to +5V.
+TP3,GND,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to GND.
+TP4,ROLL_DIR_PASS,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to ROLL_DIR_PASS.
+TP5,ROLL_PWM_PASS,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to ROLL_PWM_PASS.
+TP6,ROLL_ANALOG_PASS,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to ROLL_ANALOG_PASS.
+TP7,LOAD_ANALOG_PASS,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to LOAD_ANALOG_PASS.
+TP8,CURRENT_ADC,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to CURRENT_ADC.
+TP9,VTRIP,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to VTRIP.
+TP10,FAULT_N,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to FAULT_N.
+TP11,RUN_OK,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to RUN_OK.
+TP12,GND,Connector:TestPoint,MAA_Footprints:TestPoint_THTPad_D2.0mm_Drill1.0mm_MAA,,,,,Probe access to GND.
+U1,LM7805T,Regulator_Linear:L7805,MAA_Footprints:TO-220-3_Vertical_MAA,,,,,Regulates the protected input to 5 V.
+U2,PIC18F57Q43 Nano,MAA:PIC18F57Q43_Curiosity_Nano_MAA,MAA_Footprints:Curiosity_Nano_2x28_MAA,,,,,Main controller: PIC18F57Q43 Curiosity Nano.
+U3,DRV8871DDAR,MAA:DRV8871_MAA,MAA_Footprints:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.3mm_MAA,,,,,Brushed DC motor H-bridge driver.
+U4,MCP6002-I/P,MAA:MCP6002_MAA,MAA_Footprints:DIP-8_W7.62mm_MAA,,,,,Amplifies the shunt voltage for current measurement.
+U5,LM393P,MAA:LM393_MAA,MAA_Footprints:DIP-8_W7.62mm_MAA,,,,,Compares current feedback with the overcurrent threshold.
+U6,"74LVC1G74DP,125",MAA:74LVC1G74_MAA,MAA_Footprints:Nexperia_SOT505-2_TSSOP-8_3x3mm_P0.65mm_MAA,,,,,Latches the armed state and clears it asynchronously on a fault.
+U7,"74LVC2G08DP,125",MAA:74LVC2G08_MAA,MAA_Footprints:Nexperia_SOT505-2_TSSOP-8_3x3mm_P0.65mm_MAA,,,,,Gates both motor PWM inputs with RUN_OK.
+U8,MCP100-450DI/TO,Power_Supervisor:MCP100-450D,MAA_Footprints:TO-92_Inline_Wide_MAA,,,,,Holds the hardware fault active while the 5 V supply is below its reset threshold.

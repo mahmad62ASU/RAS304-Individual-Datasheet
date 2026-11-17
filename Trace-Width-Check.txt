@@ -1,0 +1,12 @@
+POWER TRACE WIDTH CHECK — 16 NOVEMBER 2026
+AdvancedPCB calculator:
+https://www.advancedpcb.com/en-us/tools/trace-width-calculator/
+
+Entered: 1 A, 0.5 oz/ft2 copper, 10 degrees C temperature rise,
+25 degrees C ambient, external layers in air.
+Calculator result: required width 23.7 mil (0.602 mm).
+Selected power/ground track width: 40 mil (1.016 mm), per course minimum.
+
+This is a one-amp design-point check, not a measured motor/stall current
+or a guarantee of fuse clearing behavior. The actual motor, enclosure,
+transient current and regulator dissipation require bench verification.
